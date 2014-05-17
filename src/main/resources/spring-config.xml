@@ -5,4 +5,26 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <context:annotation-config />
     <context:component-scan base-package="org.mysql2sforce"/>
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <value>classpath:application.properties</value>
+        </property>
+    </bean>
+
+    <!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
+        <!--<property name="dataSource" ref="ds" />-->
+        <!--<property name="configLocation"><value></value></property>-->
+    <!--</bean>-->
+
+    <bean id="ds" class="com.mysql.jdbc.jdbc2.optional.MysqlDataSource">
+        <property name="url" value="jdbc:mysql://${dbHost}:${dbPort}/${dbName}"/>
+        <property name="user" value="${dbUser}"/>
+    </bean>
+
+    <bean id="schemaService" class="org.mysql2sforce.MySqlSchemaMetadataService">
+        <constructor-arg>
+            <ref bean="ds"/>
+        </constructor-arg>
+    </bean>
 </beans>

@@ -11,14 +11,23 @@ public class MySqlTable {
 
 
     private String schemaName;
-
+    private String name;
 
 
     public String getSchema() {
         return schemaName;
     }
 
-    public String getName() {
-        return null;
+    public void setSchemaName(String schemaName) {
+        this.schemaName = schemaName;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName() {
+        this.name = name;
+    }
+
 }

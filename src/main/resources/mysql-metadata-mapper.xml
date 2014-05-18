@@ -1,0 +1,21 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="org.mysql2sforce.metamodel.MySqlMapper">
+
+
+    <resultMap id="MySqlTableResult" type="MySqlTable">
+        <result property="name" column="TABLE_NAME"/>
+        <result property="schemaName" column="SCHEMA_NAME"/>
+    </resultMap>
+
+    <select id="getTablesInSchema" resultMap="MySqlTableResult">
+        SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = #{schemaName}
+    </select>
+
+
+
+</mapper>

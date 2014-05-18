@@ -4,8 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
+    <typeAliases>
+        <typeAlias alias="MySqlSchema" type="org.mysql2sforce.metamodel.MySqlSchema"/>
+        <typeAlias alias="MySqlTable" type="org.mysql2sforce.metamodel.MySqlTable"/>
+    </typeAliases>
+
     <mappers>
         <mapper class="org.mysql2sforce.metamodel.MySqlMapper"/>
+        <mapper resource="mysql-metadata-mapper.xml"/>
     </mappers>
 
 

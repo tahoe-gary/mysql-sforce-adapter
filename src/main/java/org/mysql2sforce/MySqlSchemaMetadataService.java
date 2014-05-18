@@ -35,6 +35,7 @@ public class MySqlSchemaMetadataService implements SchemaMetadataService {
            List<MySqlTable> tables =  tableMapper.getTablesInSchema(schemaName);
            System.out.println("There are " + tables.size() + " in the " + schemaName + " schema!");
 
+            System.out.println("The first table's name is " + tables.get(0).getName());
 
 
         } finally {

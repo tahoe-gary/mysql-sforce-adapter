@@ -6,22 +6,16 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
 /**
  * SchemaSyncService
  *
- *
- *
- *
  * @author gbaker
  * @since 188
  */
 public final class SchemaSyncMain {
 
 
-
-
     public static void main(String[] args) throws Exception {
 
 
-
-        ApplicationContext context =  new FileSystemXmlApplicationContext(
+        ApplicationContext context = new FileSystemXmlApplicationContext(
                 "src/main/resources/spring-config.xml"
         );
 
@@ -30,13 +24,7 @@ public final class SchemaSyncMain {
         service.loadSchema(args[0]);
 
 
-
     }
-
-
-
-
-
 
 
 }

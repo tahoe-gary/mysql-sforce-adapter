@@ -27,7 +27,7 @@ public final class SchemaSyncMain {
 
         SchemaMetadataService service = context.getBean(SchemaMetadataService.class);
 
-        service.loadSchema();
+        service.loadSchema(args[0]);
 
 
 

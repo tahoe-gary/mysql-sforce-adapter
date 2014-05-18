@@ -11,9 +11,12 @@ import java.sql.SQLException;
 public interface SchemaMetadataService {
 
 
-
-
-    void loadSchema() throws SQLException;
+    /**
+     * load the schema with the given name into memory
+     * @param schemaName
+     * @throws SQLException
+     */
+    void loadSchema(String schemaName) throws SQLException;
 
 
 

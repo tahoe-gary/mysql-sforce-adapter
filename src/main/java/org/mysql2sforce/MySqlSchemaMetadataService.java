@@ -1,11 +1,13 @@
 package org.mysql2sforce;
 
 
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mysql2sforce.metamodel.MySqlTable;
+import org.mysql2sforce.metamodel.MySqlMapper;
+
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * MySqlSchemaMetadataService
@@ -15,37 +17,28 @@ import java.sql.SQLException;
  */
 public class MySqlSchemaMetadataService implements SchemaMetadataService {
 
-    private final DataSource ds;
+    private final SqlSessionFactory ssf;
 
-    public MySqlSchemaMetadataService(DataSource ds) throws Exception {
+    public MySqlSchemaMetadataService(SqlSessionFactory ssf) throws Exception {
 
-        this.ds = ds;
+        this.ssf = ssf;
 
     }
 
 
-    public void loadSchema() throws SQLException {
+    public void loadSchema(String schemaName) throws SQLException {
 
-        Connection conn = ds.getConnection();
+        SqlSession session = ssf.openSession();
         try {
 
-            PreparedStatement ps = conn.prepareStatement("select 'foo'");
-            try {
-                ResultSet rs = ps.executeQuery();
-                rs.next();
-                String foo = rs.getString(1);
-                assert "foo".equals(foo);
-                rs.close();
-            } finally {
-                ps.close();
-            }
-
-
+           MySqlMapper tableMapper = session.getMapper(MySqlMapper.class);
+           List<MySqlTable> tables =  tableMapper.getTablesInSchema(schemaName);
+           System.out.println("There are " + tables.size() + " in the " + schemaName + " schema!");
 
 
 
         } finally {
-            conn.close();
+            session.close();
         }
     }
 

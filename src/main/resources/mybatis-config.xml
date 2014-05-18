@@ -4,9 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-    <!--<mappers>-->
-        <!--<mapper resource="org/mysql2sforce/metamodel/MySqlMapper.xml"/>-->
-    <!--</mappers>-->
+    <mappers>
+        <mapper class="org.mysql2sforce.metamodel.MySqlMapper"/>
+    </mappers>
 
 
 </configuration>

@@ -10,5 +10,15 @@ package org.mysql2sforce.metamodel;
 public class MySqlTable {
 
 
+    private String schemaName;
 
+
+
+    public String getSchema() {
+        return schemaName;
+    }
+
+    public String getName() {
+        return null;
+    }
 }

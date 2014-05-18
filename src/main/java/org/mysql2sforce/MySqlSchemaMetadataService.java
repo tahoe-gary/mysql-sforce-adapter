@@ -20,34 +20,16 @@ public class MySqlSchemaMetadataService implements SchemaMetadataService {
     private final SqlSessionFactory ssf;
 
     public MySqlSchemaMetadataService(SqlSessionFactory ssf) throws Exception {
-
         this.ssf = ssf;
-
     }
-
 
     public void loadSchema(String schemaName) throws SQLException {
-
-        SqlSession session = ssf.openSession();
-        try {
-
-           MySqlMapper tableMapper = session.getMapper(MySqlMapper.class);
-           List<MySqlTable> tables =  tableMapper.getTablesInSchema(schemaName);
-           System.out.println("There are " + tables.size() + " in the " + schemaName + " schema!");
+        try (SqlSession session = ssf.openSession()) {
+            MySqlMapper tableMapper = session.getMapper(MySqlMapper.class);
+            List<MySqlTable> tables = tableMapper.getTablesInSchema(schemaName);
+            System.out.println("There are " + tables.size() + " in the " + schemaName + " schema!");
 
             System.out.println("The first table's name is " + tables.get(0).getName());
-
-
-        } finally {
-            session.close();
         }
     }
-
-
-
-
-
-
-
-
 }

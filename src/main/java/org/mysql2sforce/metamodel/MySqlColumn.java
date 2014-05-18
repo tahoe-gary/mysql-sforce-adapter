@@ -14,7 +14,6 @@ public class MySqlColumn {
     private final Integer scale;
 
 
-
     public MySqlColumn(String name, String datatype, int lengthOrPrecision) {
 
         this.name = name;
